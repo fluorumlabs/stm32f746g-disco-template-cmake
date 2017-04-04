@@ -46,19 +46,19 @@ add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
         COMMENT "[100%] Building ${HEX_FILE} \n[100%] Building ${BIN_FILE}")
 
 # Use CLANG for static analysis
-set(CLANG "clang")
+# set(CLANG "clang")
 
-set(ANALYZER_FLAGS -Xanalyzer -analyzer-checker=alpha,core,deadcode,nullability,optin,security -Xanalyzer -analyzer-disable-checker=alpha.core.FixedAddr -Xanalyzer -analyzer-opt-analyze-nested-blocks -Xanalyzer -analyzer-output=text)
+# set(ANALYZER_FLAGS -Xanalyzer -analyzer-checker=alpha,core,deadcode,nullability,optin,security -Xanalyzer -analyzer-disable-checker=alpha.core.FixedAddr -Xanalyzer -analyzer-opt-analyze-nested-blocks -Xanalyzer -analyzer-output=text)
 
-get_property(ALL_INCLUDE_DIRECTORIES DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
-set(INCLUDE_FLAGS)
-foreach (INCLUDE_DIRECTORY ${ALL_INCLUDE_DIRECTORIES})
-    list(APPEND INCLUDE_FLAGS "-I${INCLUDE_DIRECTORY}")
-endforeach ()
+# get_property(ALL_INCLUDE_DIRECTORIES DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+# set(INCLUDE_FLAGS)
+# foreach (INCLUDE_DIRECTORY ${ALL_INCLUDE_DIRECTORIES})
+#     list(APPEND INCLUDE_FLAGS "-I${INCLUDE_DIRECTORY}")
+# endforeach ()
 
-foreach (SOURCE_FILE ${MX_SOURCES_MAIN} ${MX_SOURCES_IT} ${MX_SOURCES_HAL_MSP} ${APPLICATION_SOURCES})
-    add_custom_command(TARGET ${PROJECT_NAME}.elf
-            PRE_LINK
-            COMMAND ${CLANG} -I${PROJECT_SOURCE_DIR}/Toolchain/arm-none-eabi/include -Weverything -Reverything --analyze ${ANALYZER_FLAGS} ${INCLUDE_FLAGS} -std=gnu99 -D${MCU}
-            ${SOURCE_FILE})
-endforeach ()
+# foreach (SOURCE_FILE ${MX_SOURCES_MAIN} ${MX_SOURCES_IT} ${MX_SOURCES_HAL_MSP} ${APPLICATION_SOURCES})
+#     add_custom_command(TARGET ${PROJECT_NAME}.elf
+#             PRE_LINK
+#             COMMAND ${CLANG} -I${PROJECT_SOURCE_DIR}/Toolchain/arm-none-eabi/include -Weverything -Reverything --analyze ${ANALYZER_FLAGS} ${INCLUDE_FLAGS} -std=gnu99 -D${MCU}
+#             ${SOURCE_FILE})
+# endforeach ()
