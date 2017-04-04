@@ -17,6 +17,9 @@ This directory should contain:
 
 The toolchain can be downloaded from https://launchpad.net/gcc-arm-embedded/+download
 
+## Working with CLion
+All you need to do is to create new project from sources. No additional configuration needed, it should build out of the box.
+
 ## Building from command line
 
 `CMake . && make`
